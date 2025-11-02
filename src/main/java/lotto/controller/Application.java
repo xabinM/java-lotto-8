@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import lotto.view.LottoView;
+import lotto.model.LottoMachine;
+import lotto.model.LottoNumberGenerator;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMachine lottoMachine = new LottoMachine(new LottoView());
-        lottoMachine.runLotto();
+        LottoShop lottoMachine = new LottoShop(
+                new LottoView(), new LottoMachine(new LottoNumberGenerator()));
     }
 }
