@@ -12,17 +12,10 @@ public class LottoShop {
         this.lottoMachine = lottoMachine;
     }
 
-    public void runLotto() {
-        LottoAmount amount = processPurchaseAmount();
-        List<Lotto> lottos = processBuyLotto(amount.getAmount());
-        WinningLotto winningLotto = processWinningLotto();
-        processWinningStatistics(amount, lottos, winningLotto);
-    }
-
-    private LottoAmount processPurchaseAmount() {
+    // 구매 금액 처리
+    public LottoAmount processPurchaseAmount() {
         while (true) {
             try {
-
                 return new LottoAmount(LottoView.requestPurchasePrice());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -30,24 +23,23 @@ public class LottoShop {
         }
     }
 
-    private List<Lotto> processBuyLotto(int amount) {
+    // 로또 구매 처리
+    public List<Lotto> processBuyLotto(int amount) {
         List<Lotto> lottos = lottoMachine.buyLottos(amount);
         LottoView.printLottos(lottos);
-
         return lottos;
     }
 
-    private WinningLotto processWinningLotto() {
+    // 당첨 로또 처리
+    public WinningLotto processWinningLotto() {
         List<Integer> winningNumbers = drawWinningNumbers();
         int bonusNumber = drawBonusNumber(winningNumbers);
-
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private List<Integer> drawWinningNumbers() {
         while (true) {
             try {
-
                 return LottoView.requestWinningNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -58,7 +50,6 @@ public class LottoShop {
     private int drawBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-
                 return LottoView.requestBonusNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -66,12 +57,11 @@ public class LottoShop {
         }
     }
 
+    // 통계 처리
     public void processWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottos, WinningLotto winningLotto) {
         List<LottoResult> lottoResults = StatisticsCalculator.checkLotto(lottos, winningLotto);
-
         RankStorage rankStorage = new RankStorage();
         StatisticsCalculator.calculateRankCounts(lottoResults, rankStorage);
-
         LottoView.printWinningStatistics(lottoAmount, rankStorage);
     }
 }
