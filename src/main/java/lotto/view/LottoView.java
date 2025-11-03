@@ -6,7 +6,7 @@ import static lotto.exception.Exception.*;
 import lotto.model.*;
 import lotto.model.enums.RankMessage;
 import lotto.model.validator.BonusValidator;
-import lotto.model.validator.WinningNumbersValidator;
+import lotto.model.validator.LottoValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class LottoView {
     public static List<Integer> requestWinningNumbers() {
         System.out.println(REQUEST_WINNING_NUMBERS);
         List<Integer> numbers = inputWinningNumbers();
-        WinningNumbersValidator.validateWinningNumbers(numbers);
+        LottoValidator.validateLotto(numbers);
 
         return numbers;
     }
