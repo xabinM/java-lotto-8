@@ -1,7 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import static lotto.exception.Exception.FAIL_PARSE_INT;
+import static lotto.exception.Exception.*;
+
 import lotto.model.*;
 import lotto.model.enums.RankMessage;
 import lotto.model.validator.BonusValidator;
@@ -33,7 +34,8 @@ public class LottoView {
 
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(FAIL_PARSE_INT.getMessage());        }
+            throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_MONEY.getMessage());
+        }
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -69,7 +71,7 @@ public class LottoView {
 
             return winningNumbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(FAIL_PARSE_INT.getMessage());
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT_TYPE_AND_DELIMITER.getMessage());
         }
     }
 
@@ -89,7 +91,7 @@ public class LottoView {
 
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(FAIL_PARSE_INT.getMessage());
+            throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_MONEY.getMessage());
         }
     }
 
