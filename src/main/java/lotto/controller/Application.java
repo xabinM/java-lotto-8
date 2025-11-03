@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.view.LottoView;
 import lotto.model.LottoMachine;
 import lotto.model.LottoNumberGenerator;
 
